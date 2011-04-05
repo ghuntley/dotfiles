@@ -25,3 +25,8 @@ if [ `uname` = "Linux" ]; then
     alias pbpaste='xclip -selection clipboard -o'
 fi
 
+# implement open(osx) start(win) cli functionality
+if [ `uname` = "Linux" ]; then
+    alias ]='gnome-open'
+fi
+
