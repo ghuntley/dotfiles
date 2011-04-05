@@ -7,8 +7,8 @@
 # can symlink ~/.gitconfig to this file and go rock out with your git out!
 
 [user]
-        name = Zach Holman
-        email = your@example.com
+        name = Geoffrey Huntley
+        email =
 [alias]
         co = checkout
         promote = !$ZSH/bin/git-promote
@@ -21,10 +21,13 @@
         branch = auto
 [core]
         excludesfile = ~/.gitignore
-        editor = mate -w
+        editor = vim
+#        editor = mate -w
 [apply]
         whitespace = nowarn
 [github]
-        user = holman
+        user = ghuntley
+        token =
 [mergetool]
         keepBackup = false
+

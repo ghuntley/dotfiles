@@ -18,7 +18,7 @@ subject](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 
 ## install
 
-- `git clone git://github.com/holman/dotfiles ~/.dotfiles`
+- `git clone git://github.com/ghuntley/dotfiles ~/.dotfiles`
 - `cd ~/.dotfiles`
 - `rake install`
 

@@ -10,7 +10,7 @@ then
 fi
 
 # todo.sh: https://github.com/ginatrapani/todo.txt-cli
-function t() { 
+function t() {
   if [ $# -eq 0 ]; then
     todo.sh ls
   else
@@ -18,5 +18,10 @@ function t() {
   fi
 }
 
-# github propane hax
-alias propane=`sh ~/Dropbox/GitHub/propane/install.sh`
+
+# implement pbcopy/pbpaste on linux - http://jetpackweb.com/blog/2009/09/23/pbcopy-in-ubuntu-command-line-clipboard/
+if [ `uname` = "Linux" ]; then
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+fi
+
