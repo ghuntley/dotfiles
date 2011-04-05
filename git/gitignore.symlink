@@ -3,3 +3,7 @@
 .tissues
 *~
 *.swp
+.hg
+# XCode 4
+xcuserdata/
+project.xcworkspace/
