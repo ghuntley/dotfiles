@@ -16,3 +16,8 @@ alias gb='git branch'
 alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
+# From https://gist.github.com/810859
+# $ gh-get https://github.com/defunkt/facebox/blob/master/src/facebox.js
+function ghg () {
+  curl -#O $(echo $1 | sed 's|raw|blob|')
+}
