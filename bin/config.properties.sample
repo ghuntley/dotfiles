@@ -1,0 +1,3 @@
+esx.my_server.hostname = hostname.toto.com
+esx.my_server.username = root
+esx.my_server.password = root_password
