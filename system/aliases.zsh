@@ -30,6 +30,6 @@ if [ `uname` = "Linux" ]; then
     alias ]='gnome-open'
 fi
 
-# dispatch snakes via port 8000
-alias s='python -m SimpleHTTPServer 8000'
+# dispatch snakes via port 8000 or 8001
+alias s='python -m SimpleHTTPServer 8000 || python -m SimpleHTTPServer 8001'
 
