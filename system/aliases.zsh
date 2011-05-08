@@ -38,3 +38,6 @@ function s() {
       python -m SimpleHTTPServer $*
     fi
 }
+
+# ./vmconvert.doit?now=thankyou
+alias rvmc="nohup rdesktop -xl -P -z -0 -g1024x600 -u Administrator vmconverter >/dev/null 2>&1 &"
