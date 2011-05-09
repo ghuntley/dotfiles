@@ -41,3 +41,4 @@ function s() {
 
 # ./vmconvert.doit?now=thankyou
 alias rvmc="nohup rdesktop -xl -P -z -0 -g1024x600 -u Administrator vmconverter >/dev/null 2>&1 &"
+alias rtunes="nohup rdesktop -xl -P -z -0 -g1024x600 -u ghuntley music >/dev/null 2>&1 &"
