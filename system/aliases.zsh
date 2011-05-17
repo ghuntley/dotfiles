@@ -9,6 +9,10 @@ then
   alias la='gls -A --color'
 fi
 
+
+# colour, always bitch.
+alias ls='ls --color'
+
 # todo.sh: https://github.com/ginatrapani/todo.txt-cli
 function t() {
   if [ $# -eq 0 ]; then
