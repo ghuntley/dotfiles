@@ -45,7 +45,8 @@ Bundle 'tpope/vim-cucumber'
 " snipmate dependancies: wm-utils and tlib 
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
+"Bundle 'garbas/vim-snipmate'
+Bundle 'vim-scripts/UltiSnips'
 
 " functionality
 " ----------------------------------------------------------------------------
