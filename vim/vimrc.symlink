@@ -18,7 +18,8 @@ Bundle 'gmarik/vundle'
 
 " Colour Schemes
 " ----------------------------------------------------------------------------
-Bundle 'altercation/vim-colors-solarized'
+" Bundle 'altercation/vim-colors-solarized'
+Bundle 'Railscasts-Theme-GUIand256color'
 
 " Git Integration
 Bundle 'tpope/vim-git'
@@ -115,9 +116,13 @@ inoremap <Up> <C-o>gk
 "  Theme
 " ----------------------------------------------------------------------------
 
+" 256 colours, yes please.
+set t_Co=256
+
 syntax on
-set background=dark
-colorscheme solarized
+colorscheme railscasts
+" transparent background on line numbers; ./doit.now
+highlight LineNr guibg=NONE
 
 " ----------------------------------------------------------------------------
 "  UI
