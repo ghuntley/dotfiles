@@ -1,7 +1,7 @@
 # Use `hub` as our git wrapper:
 #   http://defunkt.github.com/hub/
 #
-alias git='~/bin/hub'
+alias git='~/.dotfiles/bin/hub'
 
 # The rest of my fun git aliases
 alias ga='git add'
