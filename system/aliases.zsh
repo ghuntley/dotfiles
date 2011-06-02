@@ -44,8 +44,8 @@ function s() {
 }
 
 # ./vmconvert.doit?now=thankyou
-alias rvmc="nohup rdesktop -xl -P -z -0 -g1024x800 -u Administrator vmconverter >/dev/null 2>&1 &"
-alias rtunes="nohup rdesktop -xl -P -z -0 -g1024x600 -u ghuntley music >/dev/null 2>&1 &"
+alias rvmc="nohup rdesktop -xl -P -z -0 -g1024x700 -u Administrator vmconverter >/dev/null 2>&1 &"
+alias rtunes="nohup rdesktop -xl -P -z -0 -g1024x700 -u ghuntley music >/dev/null 2>&1 &"
 
 # rip cd
 alias ripcd="abcde -a cddb,read,encode,tag,move,playlist,clean -d /dev/cdrom -o m4a -V -x"
