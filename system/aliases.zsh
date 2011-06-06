@@ -50,4 +50,5 @@ alias rtunes="nohup rdesktop -xl -P -z -0 -g1024x700 -u ghuntley music >/dev/nul
 # rip cd
 alias ripcd="abcde -a cddb,read,encode,tag,move,playlist,clean -d /dev/cdrom -o m4a -V -x"
 
-
+# poor mans vpn
+alias svpn="spwd;cd ~/bin/sshuttle && git reset --hard && git pull && ./sshuttle --dns -vvr ghuntley@ghuntley.com 0/0; lpwd"
