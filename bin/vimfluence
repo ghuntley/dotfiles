@@ -1,0 +1,178 @@
+#!/usr/bin/perl
+
+
+package main;
+
+use strict;
+use warnings;
+use Net::Netrc;
+use File::Temp qw( mkstemps );
+use Digest::MD5 qw( md5_hex );
+use URI::Split qw( uri_split uri_join );
+
+
+my ($wiki_url, $space, $title, $editor);
+
+$editor =  $ENV{WIKI_EDITOR} || $ENV{VISUAL} || $ENV{EDITOR} || "vim +\"set ft=confluencewiki\"";
+
+if ($#ARGV == 1) {
+    # `WIKI_URL=... vimfluence SPACE "PAGE NAME"`
+    $space = $ARGV[0];
+    $title = $ARGV[1];
+    $wiki_url = $ENV{WIKI_URL};
+} elsif ($#ARGV == 0 && $ARGV[0] =~ /^https?:\/\//) {
+    # `vimfluence URL-OF-WIKI-PAGE`
+    my $uri = $ARGV[0];
+    my ($scheme, $auth, $path, $query, $frag) = uri_split($uri);
+    my @parts = split(/\//, $path);
+    $wiki_url = uri_join($scheme, $auth, join('/', @parts[0..$#parts-3]));
+    $title = urldecode($parts[$#parts]);
+    $space = $parts[$#parts - 1];
+} else {
+    help();
+    exit 1;
+}
+# die "EDITOR : $editor, WIKI_URL: $wiki_url, SPACE: $space, TITLE: $title\n";
+
+my $lookup = Net::Netrc->lookup($wiki_url);
+my $login = $lookup->login;
+my $password = $lookup->password;
+
+my $confluence = Confluence->new($wiki_url, $login, $password);
+my $output = $confluence->fetch_page($space, $title);
+my $initialMD5 = md5_hex($output);
+
+my ($fh, $filename) = mkstemps("tmpfileXXXXXX", ".confluencewiki");
+
+print $fh $output;
+close $fh;
+
+# system("vim +\"set ft=confluencewiki\" $filename");
+system("$editor  $filename");
+my $afterMD5 = md5_hex(readfile($filename));
+
+if ($afterMD5 ne $initialMD5) {
+    print "File changed.\n";
+    print "Updating wiki...\n";
+    $confluence->store_page($space, $title, $filename);
+    my $url = $wiki_url . "/display/$space/" . urlencode($title);
+    print "Done <$url>.\n";
+}
+
+unlink $filename;
+exit 0;
+
+sub help {
+    print <<HELP;
+NAME
+    vimfluence -- edit Confluence wiki pages in Vim
+
+USAGE
+    WIKI_URL=http://hub.example.com/wiki vimfluence SPACE PAGE-TITLE
+    vimfluence WIKI-URL
+
+EXAMPLES
+    WIKI_URL=http://hub.example.com/wiki vimfluence dev "Fu Machu"
+
+        If you do this frequently you might want to setup an alias something
+        like: `alias devwiki='WIKI_URL=http://hub.example.com/wiki vimfluence dev'`
+
+    vimfluence http://hub.example.com/wiki/display/dev/Fu-Machu
+HELP
+}
+
+sub urlencode {
+    my $s = shift;
+    $s =~ s/ /+/g;
+    $s =~ s/([^A-Za-z0-9\+-])/sprintf("%%%02X", ord($1))/seg;
+    return $s;
+}
+
+sub urldecode {
+    my $s = shift;
+    $s =~ s/\%([A-Fa-f0-9]{2})/pack('C', hex($1))/seg;
+    $s =~ s/\+/ /g;
+    return $s;
+}
+
+sub readfile {
+  my $filename = shift;
+  open(my $fh, $filename);
+  my $s = join "", (<$fh>);
+  close $fh;
+  return $s;
+}
+
+1;
+
+package Confluence;
+
+use strict;
+use warnings;
+use File::Spec::Functions qw( catdir );
+use File::Basename qw( dirname );
+
+use constant confluence_path => catdir(dirname(__FILE__), "externals/confluence-cli");
+
+sub new {
+  my $proto = shift;
+  my ($server, $login, $password) = @_;
+  
+  return bless { server        => $server
+               , login         => $login
+               , password      => $password
+               , common_params => [ '--server', $server, '-u', $login, '-p', "\"$password\"" ]
+               }, ref($proto) || $proto;
+}
+
+sub _run_cmd {
+  my $self = shift;
+  my ($params) = @_;
+
+  my $cmd = "java -jar \""
+    . confluence_path . "/release/confluence-cli-1.5.0.jar\" "
+    . join(" ", @$params);
+  open my $fh, $cmd . "|"
+    or die "Couldn't execute confluence cli script: '$cmd'\n";
+
+  # burn the first line
+  <$fh>;
+
+  my $s = join "", (<$fh>);
+  close $fh or die "could not close pipe";
+
+  return $s;
+}
+
+sub fetch_page {
+  my $self = shift;
+  my ($space, $title) = @_;
+
+  my $cmd = [ @{$self->{common_params}}
+            , '-a'      => 'getSource'
+            , '--space' => $space
+            , '--title' => "\"$title\""
+            ];
+
+  my $content = $self->_run_cmd($cmd);
+
+  return $content;
+};
+
+sub store_page {
+  my $self = shift;
+  my ($space, $title, $filename) = @_;
+
+  my $cmd = [ @{$self->{common_params}}
+            , '-a'      => 'storePage'
+            , '--space' => $space
+            , '--title' => "\"$title\""
+            , '--file'  => "\"$filename\""
+            ];
+
+  my $content = $self->_run_cmd($cmd);
+
+  return $content;
+};
+
+1;

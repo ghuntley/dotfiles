@@ -55,6 +55,7 @@ Bundle 'vim-scripts/UltiSnips'
 
 " functionality
 " ----------------------------------------------------------------------------
+Bundle 'vimwiki'
 Bundle 'mattn/gist-vim'
 Bundle 'tpope/vim-pastie'
 Bundle 'tpope/vim-abolish'
@@ -67,6 +68,15 @@ filetype plugin on
 Bundle 'The-NERD-Commenter'
 Bundle 'rename.vim'
 
+" these are being tested
+Bundle 'confluencewiki.vim' 
+
+" ----------------------------------------------------------------------------
+" ruby development
+" http://news.ycombinator.com/item?id=1591679
+"Bundle 'AutoComplPop'   
+" rsense does not currently work with Vundle
+"Bundle 'm2ym/rsense'   
 
 " ----------------------------------------------------------------------------
 "  Text Formatting
@@ -98,6 +108,9 @@ set pastetoggle=<F2>
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Quickly save changes to current file
+nmap <leader>w :w<CR>
 
 " exit to normal mode with 'jj'
 inoremap jj <ESC>
@@ -163,3 +176,8 @@ set laststatus=2           " always show the status line
 set ignorecase             " ignore case when searching
 set nohlsearch             " don't highlight searches
 set visualbell             " shut the fuck up
+
+" ----------------------------------------------------------------------------
+" CoffeeScript
+" ----------------------------------------------------------------------------
+autocmd BufWritePost *.coffee silent CoffeeMake! | redraw
