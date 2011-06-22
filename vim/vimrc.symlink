@@ -39,6 +39,7 @@ Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-ragtag'
 Bundle 'matchit.zip'
+Bundle 'hypergit.vim' 
 
 " Syntax highlight
 " ----------------------------------------------------------------------------
@@ -108,6 +109,9 @@ set pastetoggle=<F2>
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Hypergit menu
+nmap <leader>G   :ToggleGitMenu<CR>
 
 " Quickly save changes to current file
 nmap <leader>w :w<CR>
