@@ -194,6 +194,10 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
+" Clipboard on ubuntu (running Vim in gnome-terminal)
+vmap <F6> :!xclip -f -sel clip<CR>
+map <F7> :-1r !xclip -o -sel clip<CR>
+
 " ----------------------------------------------------------------------------
 "  Theme
 " ----------------------------------------------------------------------------
