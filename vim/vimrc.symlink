@@ -72,16 +72,62 @@ Bundle 'rename.vim'
 " these are being tested
 Bundle 'confluencewiki.vim' 
 
-" vimshell requires vimproc
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
+" ----------------------------------------------------------------------------
+"  {{{ vimshell
+" ----------------------------------------------------------------------------
+    Bundle 'Shougo/vimproc'
+    Bundle 'Shougo/vimshell'
+
+    " Use zsh history.
+    let g:vimshell_external_history_path = expand('~/.zsh-history')
+
+    let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+    let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
+    let g:vimshell_prompt = '% '
+    let g:vimshell_enable_auto_slash = 1
+    let g:vimshell_enable_smart_case = 1
+
+    " Initialize execute file list.
+    let g:vimshell_execute_file_list = {}
+    call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java', 'vim')
+    let g:vimshell_execute_file_list['rb'] = 'ruby'
+    let g:vimshell_execute_file_list['pl'] = 'perl'
+    let g:vimshell_execute_file_list['py'] = 'python'
+    call vimshell#set_execute_file('html,xhtml', 'gexe google-chrome')
+
+    autocmd FileType vimshell
+    \ call vimshell#altercmd#define('g', 'git')
+    \| call vimshell#altercmd#define('l', 'ls -ltr')
+
+    autocmd FileType int-* call s:interactive_settings()
+    function! s:interactive_settings()
+    endfunction
+
+    let s:vimshell_hooks = {}
+    function! s:vimshell_hooks.chpwd(args, context)
+      if len(split(glob('*'), '\n')) < 100
+        call vimshell#execute('ls')
+      endif
+    endfunction
+    function! s:vimshell_hooks.emptycmd(cmdline, context)
+      call vimshell#set_prompt_command('ls')
+      return 'ls'
+    endfunction
+    function! s:vimshell_hooks.preprompt(args, context)
+      " call vimshell#execute('echo "preprompt"')
+    endfunction
+    function! s:vimshell_hooks.preexec(cmdline, context)
+      " call vimshell#execute('echo "preexec"')
+
+      let l:args = vimproc#parser#split_args(a:cmdline)
+      if len(l:args) > 0 && l:args[0] ==# 'diff'
+        call vimshell#set_syntax('diff')
+      endif
+    endfunction
 
 " ----------------------------------------------------------------------------
-" ruby development
-" http://news.ycombinator.com/item?id=1591679
-"Bundle 'AutoComplPop'   
-" rsense does not currently work with Vundle
-"Bundle 'm2ym/rsense'   
+"  vimshell }}}
+" ----------------------------------------------------------------------------
 
 " ----------------------------------------------------------------------------
 "  Text Formatting
@@ -113,6 +159,11 @@ set pastetoggle=<F2>
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Shell at my fingertips!
+nmap <C-W>e :set splitbelow <bar>:new <bar>:set splitbelow! <bar>:VimShell<CR>
+nmap <C-W>E :set splitright <bar>:vnew <bar>:set splitright! <bar>:VimShell<CR>
+
 
 " Hypergit menu
 nmap <leader>G   :ToggleGitMenu<CR>
@@ -171,7 +222,7 @@ set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
 set shortmess=filtIoOA     " shorten messages
 set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
-
+set mouse=a                " so sue me!"
 
 " ----------------------------------------------------------------------------
 " Visual Cues
