@@ -71,7 +71,6 @@ Bundle 'rename.vim'
 
 " these are being tested
 Bundle 'confluencewiki.vim' 
-Bundle 'VimIRC.vim'
 
 " vimshell requires vimproc
 Bundle 'Shougo/vimproc'
