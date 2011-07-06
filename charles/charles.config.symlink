@@ -18,6 +18,9 @@
      <int>440</int> 
     </object> 
    </void> 
+   <void property="maximised"> 
+    <boolean>true</boolean> 
+   </void> 
   </void> 
   <void property="toolConfiguration"> 
    <void property="configs"> 
@@ -76,6 +79,20 @@
    </void> 
   </void> 
   <void property="userInterfaceConfiguration"> 
+   <void property="properties"> 
+    <void method="put"> 
+     <string>SessionFrame.splitPlane.dividerLocation.vertical</string> 
+     <int>200</int> 
+    </void> 
+    <void method="put"> 
+     <string>SessionFrame.navTabs.mode</string> 
+     <string>Structure</string> 
+    </void> 
+    <void method="put"> 
+     <string>SessionFrame.splitPlane.dividerLocation.horizontal</string> 
+     <int>300</int> 
+    </void> 
+   </void> 
    <void property="warningsSeen"> 
     <void method="put"> 
      <string>mozilla.extension</string> 

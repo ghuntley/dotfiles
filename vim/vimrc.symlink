@@ -244,3 +244,7 @@ set visualbell             " shut the fuck up
 " CoffeeScript
 " ----------------------------------------------------------------------------
 autocmd BufWritePost *.coffee silent CoffeeMake! | redraw
+
+" Sencha builder uses .jsb3 which is just javascript...
+au BufNewFile,BufRead *.jsb3 set filetype=javascript
+
