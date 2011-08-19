@@ -10,8 +10,10 @@ then
 fi
 
 
-# colour, always bitch.
-alias ls='ls --color'
+# colour, sometimes bitch.
+if [ `uname` != "FreeBSD" ]; then 
+    alias ls='ls --color'
+fi
 
 # todo.sh: https://github.com/ginatrapani/todo.txt-cli
 function t() {
