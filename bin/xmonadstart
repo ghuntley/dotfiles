@@ -8,7 +8,13 @@ nm-applet &
 #nm-applet --sm-disable &
 xfce4-power-manager &
 xfce4-volumed &
-gnome-keyring-daemon --daemonize --replace &
+(
+    eval $(gnome-keyring-daemon --start)
+    export GNOME_KEYRING_SOCKET
+    export GNOME_KEYRING_PID
+    export SSH_AUTH_SOCK="$GNOME_KEYRING_CONTROL/ssh"
+)
+
 thunar --daemon &
 dropbox start -i
 syndaemon -d -t &
@@ -16,11 +22,6 @@ bluetooth-applet &
 xdg-user-dirs-gtk-update &
 update-notifier --startup-delay=60 &
 
-( 
-    sleep 5
-    evolution &
-    google-chrome &
-    VirtualBox &
-)
-
-
+(sleep 15; evolution &)
+google-chrome &
+VirtualBox &
