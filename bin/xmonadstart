@@ -12,5 +12,6 @@ dropbox start -i
 
 evolution &
 google-chrome &
+VirtualBox &
 
 
