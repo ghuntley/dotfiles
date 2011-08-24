@@ -1,0 +1,16 @@
+#!/bin/bash
+DAEMONS="xfce4-volumed xfce4-power-manager nm-applet trayer thunar nm-applet dropbox"
+for daemon in $DAEMONS; do killall $daemon; done
+
+trayer --edge top --align left --margin 1160 --width 120 --widthtype pixel --height 12 --padding 1 --tint 0x000000 --transparent true &
+sleep 1
+nm-applet &
+xfce4-power-manager &
+xfce4-volumed &
+thunar --daemon &
+dropbox start -i
+
+evolution &
+google-chrome &
+
+
