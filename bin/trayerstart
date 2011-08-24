@@ -1,0 +1,7 @@
+#!/bin/bash
+# Script to launch trayer in the correct position next to xmobar.
+
+if [ "$(ps -C trayer | tail --bytes=7)" != "trayer" ]; then
+    trayer --edge top --align left --margin 1160 --width 120 --widthtype pixel --height 12 --padding 1 --tint 0x000000 --transparent true
+fi
+
