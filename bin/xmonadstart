@@ -7,6 +7,7 @@ sleep 1
 nm-applet &
 xfce4-power-manager &
 xfce4-volumed &
+gnome-keyring-daemon --replace --start &
 thunar --daemon &
 dropbox start -i
 
