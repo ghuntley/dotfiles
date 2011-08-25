@@ -1,5 +1,5 @@
 #!/bin/bash
-DAEMONS="xfce4-volumed xfce4-power-manager nm-applet trayer thunar nm-applet dropbox syndaemon update-notifier bluetooth-applet"
+DAEMONS="xfce4-volumed xfce4-power-manager nm-applet trayer thunar nm-applet dropbox syndaemon update-notifier bluetooth-applet ssh-aagent"
 for daemon in $DAEMONS; do killall $daemon; done
 
 trayer --edge top --align left --margin 1160 --width 120 --widthtype pixel --height 12 --padding 1 --tint 0x000000 --transparent true &
@@ -21,6 +21,7 @@ syndaemon -d -t &
 bluetooth-applet &
 xdg-user-dirs-gtk-update &
 update-notifier --startup-delay=60 &
+ssh-agent &
 
 (sleep 15; evolution &)
 google-chrome &
