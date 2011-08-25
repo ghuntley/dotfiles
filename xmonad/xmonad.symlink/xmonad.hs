@@ -5,18 +5,26 @@
 import System.IO
 import System.Exit
 import XMonad
+import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
+import XMonad.Layout.IM
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
  
+-- Float all dialogs dead-center.
+netWmHook ::  ManageHook
+netWmHook = composeAll $
+--    [ isFullscreen --> doFullFloat
+    [isDialog --> doCenterFloat]
+
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
