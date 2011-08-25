@@ -22,7 +22,7 @@ bluetooth-applet &
 xdg-user-dirs-gtk-update &
 update-notifier --startup-delay=60 &
 ssh-agent &
-xscreensaver -no-splash &
+#xscreensaver -no-splash &
 
 (sleep 15; evolution &)
 google-chrome &
