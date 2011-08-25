@@ -22,8 +22,8 @@ import qualified Data.Map        as M
 -- Float all dialogs dead-center.
 netWmHook ::  ManageHook
 netWmHook = composeAll $
---    [ isFullscreen --> doFullFloat
-    [isDialog --> doCenterFloat]
+    [ isFullscreen --> doFullFloat
+    , isDialog --> doCenterFloat]
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -246,6 +246,7 @@ myManageHook = composeAll
     , className =? "Thunderbird-bin" --> doShift "3:msg"
     , className =? "Evolution"      --> doShift "3:msg"
     , className =? "Pidgin"         --> doShift "3:msg"
+    , className =? "Vmware"         --> doShift "4:vm"
     , className =? "VirtualBox"     --> doShift "4:vm"
     , className =? "banshee-1"      --> doShift "5:media"
     , className =? "Ktorrent"       --> doShift "5:media"
