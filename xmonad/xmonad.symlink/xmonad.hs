@@ -21,7 +21,7 @@ import qualified Data.Map        as M
  
 -- Float all dialogs dead-center.
 netWmHook ::  ManageHook
-netWmHook = composeAll $
+netWmHook = composeAll 
     [ isFullscreen --> doFullFloat
     , isDialog --> doCenterFloat]
 
@@ -230,7 +230,8 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| tabbed shrinkText myTabConfig
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "MPlayer"        --> doFloat
+    [ isFullscreen                  --> myDoFullFloat
+    , className =? "MPlayer"        --> doFloat
     , className =? "Smplayer"       --> doFloat
     , className =? "Psx.real"       --> doFloat
     , className =? "Gimp"           --> doFloat
@@ -259,6 +260,10 @@ myManageHook = composeAll
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
  
+-- This is to allow YouTube or Flash videos to go Fullscreen
+--
+myDoFullFloat :: ManageHook
+myDoFullFloat = doF W.focusDown <+> doFullFloat
  
 ------------------------------------------------------------------------
 -- Status bars and logging
