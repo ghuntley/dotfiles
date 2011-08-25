@@ -26,4 +26,4 @@ xscreensaver -no-splash &
 
 (sleep 15; evolution &)
 google-chrome &
-VirtualBox &
+vmware &
