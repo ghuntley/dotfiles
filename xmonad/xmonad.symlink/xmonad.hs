@@ -28,7 +28,7 @@ netWmHook = composeAll
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "x-terminal-emulator"
+myTerminal      = "terminator"
  
 -- Width of the window border in pixels.
 --
