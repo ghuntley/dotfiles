@@ -9,12 +9,6 @@ then
   alias la='gls -A --color'
 fi
 
-
-# colour, sometimes bitch.
-if [ `uname` != "FreeBSD" ]; then 
-    alias ls='ls --color'
-fi
-
 # todo.sh: https://github.com/ginatrapani/todo.txt-cli
 function t() {
   if [ $# -eq 0 ]; then
