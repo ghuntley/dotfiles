@@ -41,6 +41,7 @@ Bundle 'tpope/vim-ragtag'
 Bundle 'matchit.zip'
 Bundle 'hypergit.vim' 
 Bundle 'jsbeautify'
+Bundle 'Indent-Guides'
 
 " Syntax highlight
 " ----------------------------------------------------------------------------
