@@ -70,6 +70,7 @@ Bundle 'The-NERD-tree'
 filetype plugin on
 Bundle 'The-NERD-Commenter'
 Bundle 'rename.vim'
+Bundle 'Indent-Guides'
 
 " these are being tested
 Bundle 'confluencewiki.vim' 
