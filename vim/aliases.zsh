@@ -1,1 +1,2 @@
-alias vi='vim'
+alias vi='mvim -v'
+alias vim='mvim -v'
