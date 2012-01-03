@@ -29,51 +29,37 @@ Bundle 'tpope/vim-fugitive'
 
 " Programming
 " ----------------------------------------------------------------------------
-Bundle 'nono/jquery.vim'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'tpope/vim-rails'
-Bundle 'Raimondi/delimitMate'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-ragtag'
-Bundle 'matchit.zip'
-Bundle 'hypergit.vim' 
-Bundle 'jsbeautify'
-Bundle 'Indent-Guides'
+Bundle 'ervandew/supertab'
+Bundle 'mitechie/pyflakes-pathogen'
+Bundle 'fs111/pydoc.vim'
+Bundle 'vim-scripts/pep8'
+Bundle 'alfredodeza/pytest.vim'
+Bundle 'sontek/rope-vim'
 
 " Syntax highlight
 " ----------------------------------------------------------------------------
 Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-cucumber'
 
 " snippets
 " ----------------------------------------------------------------------------
-" snipmate dependancies: wm-utils and tlib 
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-"Bundle 'garbas/vim-snipmate'
-Bundle 'vim-scripts/UltiSnips'
+Bundle 'msanders/snipmate.vim'
 
 " functionality
 " ----------------------------------------------------------------------------
-Bundle 'vimwiki'
 Bundle 'mattn/gist-vim'
-Bundle 'tpope/vim-pastie'
-Bundle 'tpope/vim-abolish'
-Bundle 'bufexplorer.zip'
-Bundle 'IndexedSearch'
+Bundle 'sontek/minibufexpl.vim'
 Bundle 'Command-T'
 Bundle 'The-NERD-tree'
+Bundle 'sjl/gundo.vim'
+Bundle 'reinh/vim-makegreen'
+"Bundle 'vim-scripts/TaskList.vim'
+
 " filetype plugins required for nerd commenter
 filetype plugin on
 Bundle 'The-NERD-Commenter'
-Bundle 'rename.vim'
 Bundle 'Indent-Guides'
-
-" these are being tested
-Bundle 'confluencewiki.vim' 
 
 " ----------------------------------------------------------------------------
 "  Text Formatting
@@ -92,6 +78,8 @@ set formatoptions+=n       " support for numbered/bullet lists
 "set textwidth=80           " wrap at 80 chars by default
 set virtualedit=block      " allow virtual edit in visual block ..
 set spelllang=en_au
+set foldmethod=indent
+set foldlevel=99
 
 " ----------------------------------------------------------------------------
 "  Remapping
@@ -103,14 +91,15 @@ let mapleader = ","
 " death to :paste
 set pastetoggle=<F2>
 
+" undo, undo, undo!
+map <leader>g :GundoToggle<CR>
+
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" Shell at my fingertips!
-nmap <C-W>e :set splitbelow <bar>:new <bar>:set splitbelow! <bar>:VimShell<CR>
-nmap <C-W>E :set splitright <bar>:vnew <bar>:set splitright! <bar>:VimShell<CR>
-
+" NERDTree
+map <leader>n :NERDTreeToggle<CR>
 
 " Hypergit menu
 nmap <leader>G   :ToggleGitMenu<CR>
@@ -140,6 +129,12 @@ vnoremap <Down> gj
 vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
+
+" movement between windows using CTRL + <hjkl> instead of CTRL + W + <hjkl>
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
 
 " Clipboard on ubuntu (running Vim in gnome-terminal)
 vmap <F6> :!xclip -f -sel clip<CR>
@@ -174,6 +169,7 @@ set shortmess=filtIoOA     " shorten messages
 set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
 set mouse=a                " so sue me!"
+set clipboard=unnamed      " yank/paste is stored/retrieved from OSX clipboard
 
 " ----------------------------------------------------------------------------
 " Visual Cues
@@ -194,4 +190,40 @@ autocmd BufWritePost *.coffee silent CoffeeMake! | redraw
 
 " Sencha builder uses .jsb3 which is just javascript...
 au BufNewFile,BufRead *.jsb3 set filetype=javascript
+
+" Django tests
+map <leader>T :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
+
+" required pytest
+" Execute the tests
+" nmap <silent><Leader>tf <Esc>:Pytest file<CR>
+" nmap <silent><Leader>tc <Esc>:Pytest class<CR>
+" nmap <silent><Leader>tm <Esc>:Pytest method<CR>
+" " cycle through test errors
+" nmap <silent><Leader>tn <Esc>:Pytest next<CR>
+" nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
+" nmap <silent><Leader>te <Esc>:Pytest error<CR>
+
+" ----------------------------------------------------------------------------
+" Add the virtualenv's site-packages to vim path
+" ----------------------------------------------------------------------------
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
+" </virtualenv>
+
+" code completion
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
+
+
+
 
