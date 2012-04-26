@@ -57,7 +57,6 @@ Bundle 'sontek/minibufexpl.vim'
 Bundle 'Command-T'
 Bundle 'The-NERD-tree'
 Bundle 'sjl/gundo.vim'
-Bundle 'reinh/vim-makegreen'
 "Bundle 'vim-scripts/TaskList.vim'
 
 " filetype plugins required for nerd commenter
@@ -190,7 +189,10 @@ set visualbell             " shut the fuck up
 " ----------------------------------------------------------------------------
 " CoffeeScript
 " ----------------------------------------------------------------------------
-autocmd BufWritePost *.coffee silent CoffeeMake! | redraw
+autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+"autocmd BufWritePost *.coffee silent CoffeeMake! -b 
+"
+"autocmd BufWritePost *.coffee silent CoffeeMake! | redraw
 
 " Sencha builder uses .jsb3 which is just javascript...
 au BufNewFile,BufRead *.jsb3 set filetype=javascript
