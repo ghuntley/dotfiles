@@ -91,7 +91,7 @@ set foldlevel=99
 " lead with ,
 let mapleader = ","
 
-nmap <silent> <leader>m :! mocha<CR>
+nmap <silent> <leader>m :! clear;mocha<CR>
 
 " death to :paste
 set pastetoggle=<F2>
