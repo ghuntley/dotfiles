@@ -91,6 +91,8 @@ set foldlevel=99
 " lead with ,
 let mapleader = ","
 
+nmap <silent> <leader>m :! mocha<CR>
+
 " death to :paste
 set pastetoggle=<F2>
 
@@ -189,7 +191,7 @@ set visualbell             " shut the fuck up
 " ----------------------------------------------------------------------------
 " CoffeeScript
 " ----------------------------------------------------------------------------
-autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+autocmd BufWritePost *.coffee silent CoffeeMake -b | cwindow | redraw!
 "autocmd BufWritePost *.coffee silent CoffeeMake! -b 
 "
 "autocmd BufWritePost *.coffee silent CoffeeMake! | redraw
