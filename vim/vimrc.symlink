@@ -201,6 +201,7 @@ au BufNewFile,BufRead *.jsb3 set filetype=javascript
 
 " command-t ignore
 set wildignore+=*.o,*.obj,.git,node_modules
+set wildignore+=*.o,*.obj,.git,node_modules,*.js
 
 
 " ----------------------------------------------------------------------------
