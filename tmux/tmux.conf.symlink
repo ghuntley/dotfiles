@@ -19,7 +19,7 @@ bind-key -r H resize-pane -L 5
 bind-key -r L resize-pane -R 5
 
 # Start window indexing at one instead of zero
-set -g base-index 1
+#set -g base-index 1
 
 # UTF-8
 set-option -g status-utf8 on
