@@ -1,0 +1,11 @@
+# Usage: imgur <file>
+# Description: uploads file to imgur.com and copies to clipboard
+# Note: pbcopy is OSX specific, files are converted to always be JPEG.
+imgur () {
+    if [ -f $1 ]; then
+        imguru $1 | pbcopy
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
