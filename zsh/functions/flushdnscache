@@ -1,0 +1,18 @@
+# Usage: flushdnscache
+# Description: cross-platform dnscache reset utility
+flushdnscache () {
+    case "$OSTYPE" in
+        darwin*) 
+            echo dscacheutil -flushcache  
+            dscacheutil -flushcache  
+
+            echo killall -HUP mDNSResponder
+            sudo killall -HUP mDNSResponder
+            ;;
+
+        *)
+            echo "$OSTYPE is not implemented." 
+            ;;
+    esac
+}
+
