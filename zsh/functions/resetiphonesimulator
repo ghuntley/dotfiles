@@ -1,0 +1,16 @@
+# Usage: resetiphonesimulator
+# Description: resets iphone simulator to default, handy when simulator crashes on startup due to corruption.
+resetiphonesimulator () {
+    case "$OSTYPE" in
+        darwin*) 
+        
+            echo resetting iphone simulator to defaults
+            find ~/Library/Application\ Support/iPhone\ Simulator/ -exec rm {} \; >/dev/null 2>&1
+            ;;
+
+        *)
+            echo "$OSTYPE is not implemented." 
+            ;;
+    esac
+}
+
