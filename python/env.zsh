@@ -1,10 +1,14 @@
-export PYTHONPATH=/usr/local/lib/python:$PYTHONPATH
+# Before other PATHs...
+PATH=${PATH}:/usr/local/share/python
 
-# https://gist.github.com/3773804
-export PATH=/usr/local/bin:/usr/local/share/python:$PATH
+# Python
 export WORKON_HOME=$HOME/.virtualenvs
-if [ -f /usr/local/share/python/virtualenvwrapper.sh ] 
-then
-    source /usr/local/share/python/virtualenvwrapper.sh
-fi
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
+export PIP_RESPECT_VIRTUALENV=true
+if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+else
+    echo "WARNING: Can't find virtualenvwrapper.sh"
+fi
