@@ -1,0 +1,13 @@
+# Usage: sys
+# Description: cross-platform syslog tail
+syslog () {
+    case "$OSTYPE" in
+        darwin*) 
+            tail -f /var/log/system.log
+            ;;
+        *)
+            echo "$OSTYPE is not implemented." 
+            ;;
+    esac
+}
+
