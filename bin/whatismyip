@@ -1,5 +1,4 @@
 #!/bin/sh
 
 # gets external IP of host
-export useragent="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1";
-curl --user-agent "$useragent" -L -s --max-time 10 http://whatismyipaddress.com/ip-lookup | egrep -o -m 1 '([[:digit:]]{1,3}\.){3}[[:digit:]]{1,3}'
+curl ifconfig.me/ip
