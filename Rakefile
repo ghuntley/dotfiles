@@ -32,4 +32,8 @@ task :install do
     `ln -s "$PWD/#{linkable}" "#{target}"`
   end
 end
-task :default => 'install'
+task :atomrestore do
+  puts "Restoring atom packages"
+  `apm stars --install`
+end
+task :default => ['install', 'atomrestore']
