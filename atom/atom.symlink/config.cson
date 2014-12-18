@@ -1,0 +1,21 @@
+'global':
+  'exception-reporting':
+    'userId': '3f3483e4-4703-e1e9-4c15-e5f253e86305'
+  'welcome':
+    'showOnStartup': false
+  'core':
+    'projectHome': '~/Dropbox'
+    'themes': [
+      'atom-dark-ui'
+      'monokai'
+    ]
+    'disabledPackages': [
+      'metrics'
+    ]
+  'editor':
+    'invisibles': {}
+    'tabLength': 4
+    'useShadowDOM': true
+    'softWrapAtPreferredLineLength': true
+    'softWrap': true
+  'linter': {}
