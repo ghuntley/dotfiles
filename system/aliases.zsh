@@ -42,8 +42,5 @@ function s() {
 # rip cd
 alias ripcd="abcde -a cddb,read,encode,tag,move,playlist,clean -d /dev/cdrom -o m4a -V -x"
 
-# poor mans vpn
-alias svpn="spwd;cd ~/bin/sshuttle && git reset --hard && git pull && ./sshuttle --dns -vvr ghuntley@pbwh.org 0/0; lpwd"
-
 # youtube-dl
 alias youtube='youtube-dl  -o "%(title)s-%(id)s.%(ext)s" $*'
