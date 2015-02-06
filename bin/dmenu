@@ -1,4 +1,0 @@
-#!/bin/sh
-
-dmenu_run -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' \
-  -nb '#000000' -nf '#FFFFFF' -sb '#7C7C7C' -sf '#CEFFAC'
