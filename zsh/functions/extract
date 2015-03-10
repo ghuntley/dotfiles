@@ -2,7 +2,7 @@
 # Usage: smartextract <file>
 # Description: extracts archived files / mounts disk images
 # Note: .dmg/hdiutil is Mac OS X-specific.
-smartextract () {
+extract () {
     if [ -f $1 ]; then
         case $1 in
             *.tar.bz2)  tar -jxvf $1                        ;;
@@ -18,6 +18,7 @@ smartextract () {
             *.rar)      unrar x $1                          ;;
             *.ZIP)      unzip $1                            ;;
             *.deb)      ar vx $1                            ;;
+            *.7z)       7z x $1                             ;;
             *.pax)      cat $1 | pax -r                     ;;
             *.pax.Z)    uncompress $1 --stdout | pax -r     ;;
             *.Z)        uncompress $1                       ;;
