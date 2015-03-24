@@ -1,0 +1,5 @@
+# credit: https://news.ycombinator.com/item?id=9259805
+httpdiff () {
+    diff -y -W $COLUMNS <(curl -Lvs $1 2>&1) <(curl -Lvs $2 2>&1)
+}
+
