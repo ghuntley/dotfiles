@@ -1,11 +1,2 @@
-.DS_Store
-.svn
-.pyc
 *~
 *.swp
-.hg
-# XCode 4
-xcuserdata/
-project.xcworkspace/
-doc/tags
-.sass-cache/

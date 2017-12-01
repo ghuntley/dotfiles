@@ -6,11 +6,11 @@
 # to make sure you're on the latest and greatest.
 export ZSH=$HOME/.dotfiles
 
-# Set OS X defaults
-$ZSH/osx/set-defaults.sh
+# Wireup defaults
+$ZSH/bootstrap
 
-# Upgrade homebrew
-brew update
+# Upgrade packages
+sudo apt-get update && sudo apt-get upgrade && sudo apt-get autoremove
 
-# Install homebrew packages
-$ZSH/homebrew/install.sh 2>&1
+# What has not been pushed back upstream?
+cd ~/.dotfiles && git-wtf 

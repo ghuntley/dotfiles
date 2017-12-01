@@ -1,4 +1,0 @@
-#!/usr/local/bin/zsh
-export NArrange="/Users/ghuntley/.dotfiles/bin/NArrangeConsole"
-
-mono $NArrange/narrange-console.exe $* -b -c:$NArrange/DefaultConfig.xml

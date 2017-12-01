@@ -1,0 +1,2 @@
+#!/bin/sh
+feh  --image-bg white --bg-center '/home/ghuntley/.wallpapers/trashpanda.jpg' 
