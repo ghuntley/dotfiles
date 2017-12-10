@@ -136,19 +136,12 @@ bindsym Print exec teiler
 bindsym $mod+comma workspace prev
 bindsym $mod+period workspace next
 
-# Special system mode
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate
-mode "$mode_system" {
-  bindsym l exec --no-startup-id /home/ghuntley/bin/lock
-#  bindsym l exec --no-startup-id light-locker-command -l, mode "default"
-  bindsym e exec --no-startup-id i3-msg exit, mode "default"
-  bindsym s exec --no-startup-id systemctl suspend, mode "default"
-  bindsym h exec --no-startup-id systemctl hibernate, mode "default"
-# back to normal
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $mod+Alt_R mode "$mode_system"
+# lock session
+exec --no-startup-id xautolock -detectsleep -time 2 -locker /home/ghuntley/bin/lock
+bindsym $mod+Control+l exec --no-startup-id /home/ghuntley/bin/lock
+
+# power mgmt
+bindsym $mod+Control+h exec --no-startup-id systemctl hibernate, mode "default"
 
 # Set background
 exec_always --no-startup-id sh ~/.fehbg
