@@ -130,7 +130,7 @@ bindsym XF86MonBrightnessUp exec xbacklight + 10
 bindsym XF86MonBrightnessDown exec xbacklight - 10
 
 # Screenshot
-bindsym Print exec teiler
+bindsym --release Print exec scrot -s ~/Dropbox/screenshots/%Y-%m-%d-%T.png
 
 # switch workspace
 bindsym $mod+comma workspace prev
