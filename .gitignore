@@ -5,3 +5,6 @@ xmonad.errors
 xmonad.hi
 xmonad.o
 *.pyc
+id_rsa
+id_rsa.pub
+known_hosts
